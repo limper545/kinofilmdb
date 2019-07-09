@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "kino-database"
+    }
+  },
+  "defaultProject": "kino-database",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
