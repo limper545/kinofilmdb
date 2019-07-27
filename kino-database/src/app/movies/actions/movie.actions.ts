@@ -1,24 +1,28 @@
 import { Action } from '@ngrx/store';
+import { Item } from '../../dashboard/dashboard.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
-export enum MovieActionTypes {
-  LoadMovies = '[Movie] Load Movies',
-  LoadMoviesSuccess = '[Movie] Load Movies Success',
-  LoadMoviesFailure = '[Movie] Load Movies Failure',
+export enum ItemActionTypes {
+  LoadItem = '[Item] Load Items',
+  LoadItemSuccess = '[Item] Load Items Success',
+  LoadItemFailure = '[Item] Load Items Failure',
 }
 
-export class LoadMovies implements Action {
-  readonly type = MovieActionTypes.LoadMovies;
+export class LoadItems implements Action {
+  readonly type = ItemActionTypes.LoadItem;
 }
 
-export class LoadMoviesSuccess implements Action {
-  readonly type = MovieActionTypes.LoadMoviesSuccess;
-  constructor(public payload: { data: any }) { }
+export class LoadItemsSuccess implements Action {
+  readonly type = ItemActionTypes.LoadItemSuccess;
+  constructor(public payload: { data: Item[] }) { }
 }
 
-export class LoadMoviesFailure implements Action {
-  readonly type = MovieActionTypes.LoadMoviesFailure;
-  constructor(public payload: { error: any }) { }
+export class LoadItemsFailure implements Action {
+  readonly type = ItemActionTypes.LoadItemFailure;
+  constructor(public payload: { error: HttpErrorResponse }) { }
 }
 
-export type MovieActions = LoadMovies | LoadMoviesSuccess | LoadMoviesFailure;
-
+export type ItemActions =
+  | LoadItems
+  | LoadItemsSuccess
+  | LoadItemsFailure;

@@ -1,0 +1,4 @@
+
+<h1>Dashboard</h1>
+<h3 *ngIf="loading$ | async">Lade Items...</h3>
+<km-item *ngFor="let item of items" [item]="item"></km-item>

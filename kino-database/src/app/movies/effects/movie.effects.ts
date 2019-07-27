@@ -1,28 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap } from 'rxjs/operators';
+import { catchError, map, concatMap, switchMap, tap } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
-import { LoadMoviesFailure, LoadMoviesSuccess, MovieActionTypes, MovieActions } from '../actions/movie.actions';
-
-
-
+import { LoadItemsFailure, LoadItemsSuccess, ItemActions, ItemActionTypes } from '../actions/movie.actions';
+// import { BookStoreService } from '../shared/book-store.service';
 
 @Injectable()
-export class MovieEffects {
+export class BookEffects {
 
   @Effect()
-  loadMovies$ = this.actions$.pipe(
-    ofType(MovieActionTypes.LoadMovies),
-    concatMap(() =>
-      /** An EMPTY observable only emits completion. Replace with your own observable API request */
-      EMPTY.pipe(
-        map(data => new LoadMoviesSuccess({ data })),
-        catchError(error => of(new LoadMoviesFailure({ error }))))
-    )
+  loadBooks$ = this.actions$.pipe(
+    ofType(ItemActionTypes.LoadItem),
+    tap(item => console.log('Funzt das so?'))
   );
 
-
-
-  constructor(private actions$: Actions<MovieActions>) {}
-
+  constructor(private actions$: Actions<ItemActions>) {}
 }
